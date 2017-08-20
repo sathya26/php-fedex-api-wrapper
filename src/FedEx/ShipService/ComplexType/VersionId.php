@@ -25,6 +25,13 @@ class VersionId extends AbstractComplexType
      */
     protected $name = 'VersionId';
 
+    protected $fixedValues = [
+        'ServiceId' => 'ship',
+        'Major' => '12',
+        'Intermediate' => '1',
+        'Minor' => '0'
+    ];
+
     /**
      * Identifies a system or sub-system which performs an operation.
      *

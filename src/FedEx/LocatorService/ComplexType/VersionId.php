@@ -25,6 +25,13 @@ class VersionId extends AbstractComplexType
      */
     protected $name = 'VersionId';
 
+    protected $fixedValues = [
+        'ServiceId' => 'dloc',
+        'Major' => '2',
+        'Intermediate' => '0',
+        'Minor' => '0'
+    ];
+
     /**
      * Fixed value.
      *
