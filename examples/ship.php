@@ -101,6 +101,26 @@ $shippingChargesPayment
     ->setPayor($shippingChargesPayor);
 
 $requestedShipment = new ComplexType\RequestedShipment();
+// if we have dynamic date 
+if("dynamic date"){
+$shipDate = Carbon::parse($shipper_date);  
+    
+        if($shipDate->isMonday() || $shipDate->isTuesday() || $shipDate->isWednesday() || $shipDate->isSunday()  ){
+          
+             $requestedShipment->setShipTimestamp($shipDate->addDays(2)->format("c"));
+
+        }else if($shipDate->isThursday() || $shipDate->isFriday() ){
+           
+            $requestedShipment->setShipTimestamp($shipDate->addDays(4)->format("c"));
+
+        }else if($shipDate->isSaturday() ){
+         
+            $requestedShipment->setShipTimestamp($shipDate->addDays(3)->format("c"));
+        }  
+}
+else{
+ $requestedShipment->setShipTimestamp(date('c'));   
+}
 $requestedShipment->setShipTimestamp(date('c'));
 $requestedShipment->setDropoffType(new SimpleType\DropoffType(SimpleType\DropoffType::_REGULAR_PICKUP));
 $requestedShipment->setServiceType(new SimpleType\ServiceType(SimpleType\ServiceType::_FEDEX_GROUND));
